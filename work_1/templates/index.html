@@ -1,0 +1,65 @@
+{% extends "parts/base.html" %}
+
+{% block title %}index{% endblock title %}
+
+{% block page_content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="widget">
+                <h4 class="text-capitalize mb-4">Choose detail</h4>
+                <p></p>
+                <form method="post" action="/" class="sub-form">
+                    <select id="select2" name="district" class="form-control mb-3" aria-label="Default select example">
+                        <option value="0">請選擇地區</option>
+                        {% for col in district %}
+                        {# if col['id'] == 1 #}
+                        <!-- <option value="{{col['id']}}" selected>{{col['district']}}</option> -->
+                        {# else #}
+                        <option value="{{col['id']}}">{{col['city']}} - {{col['district']}}</option>
+                        {# endif #}
+                        {% endfor %}
+                    </select>                   
+
+                    <select id="select3" name="style" class="form-control mb-3" aria-label="Default select example">
+                        <option value="0">建物型態</option>
+                        {% for col in style %}
+                        {# if col['id'] == 1 #}
+                        <!-- <option value="{{col['id']}}" selected>{{col['district']}}</option> -->
+                        {# else #}
+                        <option value="{{col['style']}}">{{col['style']}}</option>
+                        {# endif #}
+                        {% endfor %}
+                    </select>
+
+                    <input id=floor_id name="floor_num" class="form-control mb-3"  placeholder="輸入樓層">            
+
+                    <br>
+                    <button type="submit">Submit</button>
+                </form>            
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock page_content %}
+
+{% block scripts %}
+{{ super() }}
+
+<script src="{{ url_for('static', filename='jquery/jquery-3.5.1.min.js') }}">
+    function myFunction() {
+        var x = document.getElementById("select1").value;
+        if (x == "2") document.getElementById("select2").style.display = "initial"
+        else document.getElementById("select2").style.display = "none";
+    }
+
+    function myFunction2() {
+        var x = document.getElementById("select1").value;
+        if (x == "2") document.getElementById("select22").style.display = "initial"
+        else document.getElementById("select22").style.display = "none";
+    }
+
+</script>
+
+{% endblock scripts %}
